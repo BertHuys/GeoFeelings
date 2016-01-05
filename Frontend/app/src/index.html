@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html class="no-js" ng-app="GeoFeeling">
+<html class="no-js" ng-app="GeoFeelings">
 <head>
     <meta charset="utf-8">
-    <title>GeoFeeling</title>
+    <title>GeoFeelings</title>
 
     <link rel="stylesheet" href="../src/less/style.css"/>
 
@@ -16,6 +16,27 @@
     <script src="../../../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
 </head>
 <body>
+<form class="dataForm" id="checkForm" novalidate>
+    <div class="formGroup">
+    <label for="username">Username</label>
+    <input type="text" class="formInput" id="username" placeholder="Username" ng-model="formData.username" required>
+    </div>
+
+    <label>Current Mood</label>
+    <div class="radio" required>
+        <input type="radio" name="optionMood" id="optionHappy" value="Happy" ng-model="formData.mood">Happy
+    </div>
+    <div class="radio">
+        <input type="radio" name="optionMood" id="optionSad" value="Sad" ng-model="formData.mood">Sad
+     </div>
+
+    <div class="textareaGroup">
+        <label for="formMotivation">Why are you feeling that way?</label>
+        <textarea form="checkForm" rows="3" cols="30" class="formInput" id="formMotivation" placeholder="Why do I feel this way?" ng-model="formData.motivation">
+            </textarea>
+    </div>
+    <button type="submit" class="btnSubmit" ng-disabled="checkForm.$invalid">Check in</button>
+</form>
 
 </body>
 </html>
