@@ -1,8 +1,8 @@
 /**
  * Created by BERT on 3/01/16.
  */
-var control = angular.module('control',['geolocation']);
-control.controller('control',function($scope,$http,geolocation){
+var control = angular.module('control',['geolocation','googleservice']);
+control.controller('control',function($scope,$http,geolocation,googleservice){
     $scope.formData ={};
     var coords ={};
     var long = 0;
@@ -18,6 +18,7 @@ control.controller('control',function($scope,$http,geolocation){
             $scope.formData.username="";
             $scope.formData.mood="";
             $scope.formData.motivation="";
+            googleservice.refresh($scope.formData.latitude,$scope.formData.longitude );
         })
             .error(function(data){
                 console.log('Error: ' + data);
