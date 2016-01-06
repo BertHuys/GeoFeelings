@@ -3,7 +3,7 @@ define(['ModernizrProto'], function(ModernizrProto) {
   var Modernizr = function() {};
   Modernizr.prototype = ModernizrProto;
 
-  // Leak modernizr globally when you `require` it rather than force it here.
+  // Leak modernizr.js globally when you `require` it rather than force it here.
   // Overwrite name so constructor name is nicer :D
   Modernizr = new Modernizr();
 

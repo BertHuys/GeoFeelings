@@ -7,7 +7,7 @@ define(['contains', 'mStyle', 'createElement', 'nativeTestProps', 'is', 'cssToDO
   // if unsupported it will return undefined.
 
   // We'll take advantage of this quick test and skip setting a style
-  // on our modernizr element, but instead just testing undefined vs
+  // on our modernizr.js element, but instead just testing undefined vs
   // empty string.
 
   // Property names can be provided in either camelCase or kebab-case.
@@ -30,9 +30,9 @@ define(['contains', 'mStyle', 'createElement', 'nativeTestProps', 'is', 'cssToDO
     // the core tests, so we'll need to create our own elements to use
 
     // inside of an SVG element, in certain browsers, the `style` element is only
-    // defined for valid tags. Therefore, if `modernizr` does not have one, we
+    // defined for valid tags. Therefore, if `modernizr.js` does not have one, we
     // fall back to a less used element and hope for the best.
-    var elems = ['modernizr', 'tspan'];
+    var elems = ['modernizr.js', 'tspan'];
     while (!mStyle.style) {
       afterInit = true;
       mStyle.modElem = createElement(elems.shift());

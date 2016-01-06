@@ -13,7 +13,7 @@
 */
 define(['Modernizr', 'testStyles', 'createElement'], function(Modernizr, testStyles, createElement) {
   Modernizr.addTest('cssinvalid', function() {
-    return testStyles('#modernizr input{height:0;border:0;padding:0;margin:0;width:10px} #modernizr input:invalid{width:50px}', function(elem) {
+    return testStyles('#modernizr.js input{height:0;border:0;padding:0;margin:0;width:10px} #modernizr.js input:invalid{width:50px}', function(elem) {
       var input = createElement('input');
       input.required = true;
       elem.appendChild(input);

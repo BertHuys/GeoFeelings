@@ -91,7 +91,7 @@ describe('cli/build', function() {
         });
       });
 
-      it('strips out the modernizr-init/build `define` section', function() {
+      it('strips out the modernizr.js-init/build `define` section', function() {
         var defineRe = /define\("modernizr-(init|build)"\)/m;
         expect(defineRe.test(output)).to.be(false);
       });
@@ -127,7 +127,7 @@ describe('cli/build', function() {
         });
       });
 
-      it('strips out the modernizr-init/build `define` section', function() {
+      it('strips out the modernizr.js-init/build `define` section', function() {
         var defineRe = /define\("modernizr-(init|build)"\)/m;
         expect(defineRe.test(output)).to.be(false);
       });

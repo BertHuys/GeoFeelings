@@ -1,6 +1,15 @@
 body {
+  width: 100%;
   font-family: verdana, helvetica, arial, sans-serif;
   color: #5895e9;
+}
+body main form {
+  display: inline-block;
+  width: -545%;
+}
+body main .map {
+  display: inline-block;
+  widows: 645px;
 }
 label {
   font-weight: bold;

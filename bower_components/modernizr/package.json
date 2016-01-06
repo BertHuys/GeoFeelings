@@ -1,5 +1,5 @@
 {
-  "name": "modernizr",
+  "name": "modernizr.js",
   "version": "3.2.0",
   "description": "Modernizr is a JavaScript library that detects HTML5 and CSS3 features in the user’s browser.",
   "directories": {
@@ -41,7 +41,7 @@
     "test": "grunt test --stack"
   },
   "main": "./lib/cli",
-  "bin": "./bin/modernizr",
+  "bin": "./bin/modernizr.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/Modernizr/Modernizr.git"
@@ -65,7 +65,7 @@
   ],
   "author": {
     "name": "Modernizr",
-    "url": "http://modernizr.com/"
+    "url": "http://modernizr.js.com/"
   },
   "contributors": [
     {

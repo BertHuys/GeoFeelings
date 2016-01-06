@@ -13,7 +13,7 @@ define(['Modernizr'], function(Modernizr) {
   //   www.quirksmode.org/dom/html5.html
   // But IE8 doesn't support either with local files
   Modernizr.addTest('sessionstorage', function() {
-    var mod = 'modernizr';
+    var mod = 'modernizr.js';
     try {
       sessionStorage.setItem(mod, mod);
       sessionStorage.removeItem(mod);

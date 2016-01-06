@@ -1,7 +1,7 @@
 /**
  * Created by BERT on 3/01/16.
  */
-/ Dependencies
+//Dependencies
 var mongoose        = require('mongoose');
 var User            = require('./model.js');
 

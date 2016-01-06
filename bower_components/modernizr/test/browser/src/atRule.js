@@ -49,7 +49,7 @@ describe('atRule', function() {
       });
 
       it('detects prefixed properties', function() {
-        expect(atRule('fake')).to.be('@-modernizr-fake');
+        expect(atRule('fake')).to.be('@-modernizr.js-fake');
       });
     }
 

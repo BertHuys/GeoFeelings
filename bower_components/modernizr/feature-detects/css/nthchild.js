@@ -26,7 +26,7 @@ define(['Modernizr', 'testStyles'], function(Modernizr, testStyles) {
   // Then every other element has its `width` set to `2px`.
   // A Javascript loop then tests if the `<div>`s have the expected width
   // using the modulus operator.
-  testStyles('#modernizr div {width:1px} #modernizr div:nth-child(2n) {width:2px;}', function(elem) {
+  testStyles('#modernizr.js div {width:1px} #modernizr.js div:nth-child(2n) {width:2px;}', function(elem) {
     Modernizr.addTest('nthchild', function() {
       var elems = elem.getElementsByTagName('div'),
       test = true;

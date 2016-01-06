@@ -12,7 +12,7 @@ define(['ModernizrProto', 'docElement', 'createElement', 'getBody'], function(Mo
    */
 
   function injectElementWithStyles(rule, callback, nodes, testnames) {
-    var mod = 'modernizr';
+    var mod = 'modernizr.js';
     var style;
     var ret;
     var node;

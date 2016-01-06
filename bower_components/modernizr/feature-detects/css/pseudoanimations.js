@@ -15,7 +15,7 @@ define(['Modernizr', 'testStyles', 'test/css/animations'], function(Modernizr) {
 
     var styles = [
       '@', Modernizr._prefixes.join('keyframes csspseudoanimations { from { font-size: 10px; } }@').replace(/\@$/, ''),
-      '#modernizr:before { content:" "; font-size:5px;',
+      '#modernizr.js:before { content:" "; font-size:5px;',
       Modernizr._prefixes.join('animation:csspseudoanimations 1ms infinite;'),
       '}'
     ].join('');

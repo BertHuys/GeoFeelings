@@ -23,7 +23,7 @@ var requireConfig = {
   generateSourceMaps: false,
   optimizeCss: 'none',
   useStrict: true,
-  include: ['modernizr-init'],
+  include: ['modernizr.js-init'],
   fileExclusionRegExp: /^(.git|node_modules|modulizr|media|test)$/,
   wrap: {
     start: '\n;(function(window, document, undefined){',
@@ -85,7 +85,7 @@ function build(generate, generateBanner, pkg) {
     requireConfig.out = function(output) {
       output = banner + output;
 
-      // Remove `define('modernizr-init' ...)` and `define('modernizr-build' ...)`
+      // Remove `define('modernizr.js-init' ...)` and `define('modernizr.js-build' ...)`
       output = output.replace(/(,\s*)?define\("modernizr-(init|build)",\s*function\(\)\{\};?\)/g, '');
       output = output.replace(/__VERSION__/g, pkg.version);
 
@@ -105,14 +105,14 @@ function build(generate, generateBanner, pkg) {
 if (inBrowser) {
   var suppliedConfig = self._modernizrConfig;
   var metadataUrl = 'i/js/metadata.json';
-  var packageUrl = 'i/js/modernizr-git/package.json';
-  requireConfig.baseUrl = '/i/js/modernizr-git/src';
+  var packageUrl = 'i/js/modernizr.js-git/package.json';
+  requireConfig.baseUrl = '/i/js/modernizr.js-git/src';
   requireConfig.paths = {
     text: '/i/js/requirejs-plugins/lib/text',
-    lib: '/i/js/modernizr-git/lib',
+    lib: '/i/js/modernizr.js-git/lib',
     json: '/i/js/requirejs-plugins/src/json',
     lodash: '/i/js/lodash',
-    test: '/i/js/modernizr-git/feature-detects'
+    test: '/i/js/modernizr.js-git/feature-detects'
   };
 
   if (suppliedConfig) {

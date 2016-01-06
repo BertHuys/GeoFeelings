@@ -8,14 +8,19 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe1vD0bBuFvI29gfn6fA1qXR5ex5xwyPU"></script>
 
-    <script src="../bower_components/modernizr/bin/modernizr"></script>
+    <script src="../bower_components/modernizr/bin/modernizr.js"></script>
 
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+
+    <script src="javascript/app.js"></script>
+    <script src="javascript/control.js"></script>
+
 </head>
-<body>
+<body ng-controller="control">
+<main>
 <div id="map"></div>
 <form class="dataForm" id="checkForm" novalidate>
     <div class="formGroup">
@@ -36,8 +41,8 @@
         <textarea form="checkForm" rows="3" cols="30" class="formInput" id="formMotivation" placeholder="Why do I feel this way?" ng-model="formData.motivation">
             </textarea>
     </div>
-    <button type="submit" class="btnSubmit" ng-disabled="checkForm.$invalid">Check in</button>
+    <button type="submit" class="btnSubmit" ng-click="checkIn()" ng-disabled="checkForm.$invalid">Check in</button>
 </form>
-
+</main>
 </body>
 </html>

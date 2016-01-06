@@ -35,7 +35,7 @@ define(['Modernizr'], function(Modernizr) {
   // But IE8 doesn't support either with local files
 
   Modernizr.addTest('localstorage', function() {
-    var mod = 'modernizr';
+    var mod = 'modernizr.js';
     try {
       localStorage.setItem(mod, mod);
       localStorage.removeItem(mod);

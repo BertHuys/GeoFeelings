@@ -32,16 +32,16 @@ describe('injectElementWithStyles', function() {
 
   it('styles an injected element', function() {
     var callback = function() {
-      var modernizr = document.getElementById('modernizr');
+      var modernizr = document.getElementById('modernizr.js');
       return modernizr.clientWidth === 10;
     };
 
-    var result = injectElementWithStyles('#modernizr{width: 10px}', callback);
+    var result = injectElementWithStyles('#modernizr.js{width: 10px}', callback);
     expect(result).to.be(true);
   });
 
   it('passes back a rule matching what we gave it', function(done) {
-    var style = '#modernizr{width: 10px}';
+    var style = '#modernizr.js{width: 10px}';
     var callback = function(elm, rule) {
       expect(rule).to.be(style);
       done();
@@ -50,10 +50,10 @@ describe('injectElementWithStyles', function() {
     injectElementWithStyles(style, callback);
   });
 
-  it('passes the #modernizr element in the callback', function(done) {
-    var style = '#modernizr{width: 10px}';
+  it('passes the #modernizr.js element in the callback', function(done) {
+    var style = '#modernizr.js{width: 10px}';
     var callback = function(elm) {
-      expect(elm.id).to.be('modernizr');
+      expect(elm.id).to.be('modernizr.js');
       done();
     };
 
@@ -61,15 +61,15 @@ describe('injectElementWithStyles', function() {
   });
 
   it('deletes an element after the test', function() {
-    expect(document.getElementById('modernizr')).to.be(null);
+    expect(document.getElementById('modernizr.js')).to.be(null);
 
     var callback = function() {
-      expect(document.getElementById('modernizr')).to.not.be(null);
+      expect(document.getElementById('modernizr.js')).to.not.be(null);
     };
 
     injectElementWithStyles('', callback);
 
-    expect(document.getElementById('modernizr')).to.be(null);
+    expect(document.getElementById('modernizr.js')).to.be(null);
   });
 
   it('creates multiple nodes when requested', function(done) {

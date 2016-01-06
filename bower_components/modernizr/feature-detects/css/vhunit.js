@@ -15,7 +15,7 @@
 }
 !*/
 define(['Modernizr', 'testStyles'], function(Modernizr, testStyles) {
-  testStyles('#modernizr { height: 50vh; }', function(elem) {
+  testStyles('#modernizr.js { height: 50vh; }', function(elem) {
     var height = parseInt(window.innerHeight / 2, 10);
     var compStyle = parseInt((window.getComputedStyle ?
                               getComputedStyle(elem, null) :

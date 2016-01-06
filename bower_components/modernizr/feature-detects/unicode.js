@@ -24,7 +24,7 @@ define(['Modernizr', 'createElement', 'testStyles', 'isSVG'], function(Modernizr
     var missingGlyph = createElement('span');
     var star = createElement('span');
 
-    testStyles('#modernizr{font-family:Arial,sans;font-size:300em;}', function(node) {
+    testStyles('#modernizr.js{font-family:Arial,sans;font-size:300em;}', function(node) {
 
       missingGlyph.innerHTML = isSVG ? '\u5987' : '&#5987';
       star.innerHTML = isSVG ? '\u2606' : '&#9734';

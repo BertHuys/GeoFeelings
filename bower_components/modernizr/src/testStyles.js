@@ -20,8 +20,8 @@ define(['ModernizrProto', 'injectElementWithStyles'], function(ModernizrProto, i
    * that can not be detected by simply checking the [IDL](https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Interface_development_guide/IDL_interface_rules).
    *
    * ```js
-   * Modernizr.testStyles('#modernizr { width: 9px; color: papayawhip; }', function(elem, rule) {
-   *   // elem is the first DOM node in the page (by default #modernizr)
+   * Modernizr.testStyles('#modernizr.js { width: 9px; color: papayawhip; }', function(elem, rule) {
+   *   // elem is the first DOM node in the page (by default #modernizr.js)
    *   // rule is the first argument you supplied - the CSS rule in string form
    *
    *   addTest('widthworks', elem.style.width === '9px')
@@ -34,14 +34,14 @@ define(['ModernizrProto', 'injectElementWithStyles'], function(ModernizrProto, i
    * the first argument to the callback.
    *
    * ```js
-   * Modernizr.testStyles('#modernizr {width: 1px}; #modernizr2 {width: 2px}', function(elem) {
-   *   document.getElementById('modernizr').style.width === '1px'; // true
+   * Modernizr.testStyles('#modernizr.js {width: 1px}; #modernizr2 {width: 2px}', function(elem) {
+   *   document.getElementById('modernizr.js').style.width === '1px'; // true
    *   document.getElementById('modernizr2').style.width === '2px'; // true
    *   elem.firstChild === document.getElementById('modernizr2'); // true
    * }, 1);
    * ```
    *
-   * By default, all of the additional elements have an ID of `modernizr[n]`, where
+   * By default, all of the additional elements have an ID of `modernizr.js[n]`, where
    * `n` is its index (e.g. the first additional, second overall is `#modernizr2`,
    * the second additional is `#modernizr3`, etc.).
    * If you want to have more meaningful IDs for your function, you can provide

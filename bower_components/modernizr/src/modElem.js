@@ -1,12 +1,12 @@
 define(['Modernizr', 'createElement'], function(Modernizr, createElement) {
   /**
-   * Create our "modernizr" element that we do most feature tests on.
+   * Create our "modernizr.js" element that we do most feature tests on.
    *
    * @access private
    */
 
   var modElem = {
-    elem : createElement('modernizr')
+    elem : createElement('modernizr.js')
   };
 
   // Clean up this element

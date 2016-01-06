@@ -19,8 +19,8 @@ define(['Modernizr'], function(Modernizr) {
     var url;
     try {
       // have to actually try use it, because Safari defines a dud constructor
-      url = new URL('http://modernizr.com/');
-      return url.href === 'http://modernizr.com/';
+      url = new URL('http://modernizr.js.com/');
+      return url.href === 'http://modernizr.js.com/';
     } catch (e) {
       return false;
     }

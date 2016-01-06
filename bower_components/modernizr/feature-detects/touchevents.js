@@ -40,7 +40,7 @@ define(['Modernizr', 'prefixes', 'testStyles'], function(Modernizr, prefixes, te
     if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
       bool = true;
     } else {
-      var query = ['@media (', prefixes.join('touch-enabled),('), 'heartz', ')', '{#modernizr{top:9px;position:absolute}}'].join('');
+      var query = ['@media (', prefixes.join('touch-enabled),('), 'heartz', ')', '{#modernizr.js{top:9px;position:absolute}}'].join('');
       testStyles(query, function(node) {
         bool = node.offsetTop === 9;
       });

@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       }
     },
     generate: {
-      dest: './dist/modernizr-build.js'
+      dest: './dist/modernizr.js-build.js'
     },
     copy: {
       'gh-pages': {

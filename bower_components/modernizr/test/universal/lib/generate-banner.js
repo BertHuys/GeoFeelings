@@ -7,7 +7,7 @@ if (typeof define !== 'function') {
   var requirejs = require('requirejs');
   var pkg = require(projectRoot + '/package');
   var expect = require('expect.js');
-  var domain = 'modernizr.com';
+  var domain = 'modernizr.js.com';
   var _ = require('lodash');
   var def = function() {
     return requirejs.define.apply(this, arguments);

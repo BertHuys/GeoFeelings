@@ -32,7 +32,7 @@ define(['injectElementWithStyles', 'domToCSS'], function(injectElementWithStyles
         conditionText.push('(' + domToCSS(props[i]) + ':' + value + ')');
       }
       conditionText = conditionText.join(' or ');
-      return injectElementWithStyles('@supports (' + conditionText + ') { #modernizr { position: absolute; } }', function(node) {
+      return injectElementWithStyles('@supports (' + conditionText + ') { #modernizr.js { position: absolute; } }', function(node) {
         return getComputedStyle(node, null).position == 'absolute';
       });
     }

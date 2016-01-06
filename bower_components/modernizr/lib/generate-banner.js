@@ -1,6 +1,6 @@
 /*global location, define*/
 define(['lodash', 'package', 'lib/build-query'], function(_, pkg, buildQuery) {
-  var domain = 'modernizr.com';
+  var domain = 'modernizr.js.com';
   if (typeof location !== 'undefined' && 'host' in location) {
     domain = location.host;
   }

@@ -22,7 +22,7 @@ define(['Modernizr', 'createElement', 'docElement', 'testStyles'], function(Mode
       return false;
     }
 
-    testStyles('#modernizr details{display:block}', function(node) {
+    testStyles('#modernizr.js details{display:block}', function(node) {
       node.appendChild(el);
       el.innerHTML = '<summary>a</summary>b';
       diff = el.offsetHeight;

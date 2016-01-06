@@ -7,8 +7,8 @@
 }
 !*/
 define(['Modernizr', 'testStyles', 'prefixes'], function(Modernizr, testStyles, prefixes) {
-  testStyles('#modernizr{overflow: scroll; width: 40px; height: 40px; }#' + prefixes
-    .join('scrollbar{width:0px}' + ' #modernizr::')
+  testStyles('#modernizr.js{overflow: scroll; width: 40px; height: 40px; }#' + prefixes
+    .join('scrollbar{width:0px}' + ' #modernizr.js::')
     .split('#')
     .slice(1)
     .join('#') + 'scrollbar{width:0px}',

@@ -49,7 +49,7 @@ gulp.task("css-build", function(){
 
 gulp.task("copy-externals", function(){
 
-    gulp.src("./bower_components/modernizr/modernizr.js")
+    gulp.src("./bower_components/modernizr.js/modernizr.js.js")
         .pipe(gulp.dest("./app/dist/js"));
 
     gulp.src("./bower_components/bootstrap/dist/**")
