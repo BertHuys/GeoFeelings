@@ -21,9 +21,13 @@
 
 </head>
 <body ng-controller="control">
+<header>
+    <Div class="heading"><h1>GeoFeelings</h1></Div>
+</header>
 <main>
-<div id="map"></div>
-<form class="dataForm" id="checkForm" novalidate>
+<div id="map" class="map"></div>
+    <fieldset class="container" id="formfield"> <legend>New CheckIn</legend>
+<form class="dataForm" id="checkForm" name="checkForm" novalidate>
     <div class="formGroup">
     <label for="username">Username</label>
     <input type="text" class="formInput" id="username" placeholder="Username" ng-model="formData.username" required>
@@ -44,6 +48,7 @@
     </div>
     <button type="submit" class="btnSubmit" ng-click="checkIn()" ng-disabled="checkForm.$invalid">Check in</button>
 </form>
+    </fieldset>
 </main>
 </body>
 </html>

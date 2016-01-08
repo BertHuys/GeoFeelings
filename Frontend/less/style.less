@@ -4,18 +4,46 @@ body{
   font-family: verdana, helvetica, arial, sans-serif;
   color: @colorbasic;
   main{
-    form{
+    fieldset{
       display: inline-block;
-      width: 100% - 645px;
+      width: 255px;
+      float: left;
+      margin-left: 10px;
+      border-color: @colorbasic;
     }
     .map{
+      float: left;
       display: inline-block;
-      widows: 645px;
+      width: 845px;
+      height: 645px;
+      background-color: lightgrey;
     }
   }
 }
+header{
+  width: 100%;
+  display: block;
+  float: left;
+  background: @colorbasic;
+  color: #ffffff;
+  height: 120px;
+  margin:auto;
+  margin-bottom: 20px;
+  .heading{
+    width: 1240px;
+    margin: auto;
+    h1{
+      margin-top: 40px;
+    }
+  }
+}
+main{
+  width: 1240px;
+  margin: auto;
+}
 label{
-  font-weight: bold;}
+  font-weight: bold;
+}
 textarea{
   align-content: center;
   resize: none;
@@ -29,4 +57,17 @@ display:block;
   color: #ffffff;
   border: 1px solid #ffffff;
   border-radius:4px;
+  &:hover{
+    cursor: pointer;
+    background-color: white;
+    border-color: @colorbasic;
+    color: @colorbasic;
+  }
+  &:disabled{
+    background: lightgrey;
+    &:hover{background: lightgrey;
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+  }
 }
