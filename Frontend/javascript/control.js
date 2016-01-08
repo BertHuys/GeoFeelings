@@ -1,6 +1,3 @@
-/**
- * Created by BERT on 3/01/16.
- */
 var control = angular.module('control',['geolocation','googleservice']);
 control.controller('control',function($scope,$http,geolocation,googleservice){
     $scope.formData ={};
