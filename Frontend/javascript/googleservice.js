@@ -1,14 +1,10 @@
-/**
- * Created by BERT on 3/01/16.
- */
-
 angular.module('googleservice', [])
     .factory('googleservice', function($http){
 
         var googleMapService = {};
         var locations = [];
-        var selectedLat = 00;
-        var selectedLong = 00;
+        var selectedLat = 5;
+        var selectedLong = -39;
 
         googleMapService.refresh = function(latitude, longitude){
             locations = [];
@@ -22,27 +18,25 @@ angular.module('googleservice', [])
         var convertToMapPoints = function(response){
             var locations = [];
             for(var i= 0; i < response.length; i++) {
-                var user = response[i];
+                var checkin = response[i];
                 var  contentString =
-                    '<p><b>Username</b>: ' + user.username +
-                        '<br><b>Mood</b>: ' + user.mood +
-                        '<br><b>Motivation</b>: ' + user.motivation +
+                    '<p><b>Username</b>: ' + checkin.username +
+                        '<br><b>Mood</b>: ' + checkin.mood +
+                        '<br><b>Motivation</b>: ' + checkin.motivation +
                         '</p>';
                 locations.push({
-                    latlon: new google.maps.LatLng(user.location[1], user.location[0]),
+                    latlon: new google.maps.LatLng(checkin.location[1], checkin.location[0]),
                     message: new google.maps.InfoWindow({
                         content: contentString,
                         maxWidth: 320
                     }),
-                    username: user.username,
-                    gender: user.gender,
-                    age: user.age,
-                    favlang: user.favlang
+                    username: checkin.username,
+                    mood: checkin.mood,
+                    motivation: user.motivation
                 });
             }
             return locations;
         };
-
         var initialize = function(latitude, longitude) {
             var myLatLng = {lat: selectedLat, lng: selectedLong};
             if (!map){
@@ -71,10 +65,8 @@ angular.module('googleservice', [])
                 icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
             });
             lastMarker = marker;
-
         };
         google.maps.event.addDomListener(window, 'load',
             googleMapService.refresh(selectedLat, selectedLong));
-
         return googleMapService;
     });

@@ -1,11 +1,10 @@
-
 var mongoose        = require('mongoose');
 var Checkin            = require('./model.js');
 
 module.exports = function(app) {
     app.get('/checkins', function(req, res){
-        var query = User.find({});
-        query.exec(function(err, users){
+        var query = Checkin.find({});
+        query.exec(function(err, checkins){
             if(err)
                 res.send(err);
             res.json(users);

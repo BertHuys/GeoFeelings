@@ -8,7 +8,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe1vD0bBuFvI29gfn6fA1qXR5ex5xwyPU"></script>
 
-    <script src="../bower_components/modernizr/bin/modernizr.js"></script>
+   <script src="../bower_components/modernizr/bin/modernizr.js"></script>
 
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
@@ -34,8 +34,8 @@
     </div>
 
     <label>Current Mood</label>
-    <div class="radio" required>
-        <input type="radio" name="optionMood" id="optionHappy" value="Happy" ng-model="formData.mood">Happy
+    <div class="radio" >
+        <input type="radio" name="optionMood" id="optionHappy" value="Happy" ng-model="formData.mood" required>Happy
     </div>
     <div class="radio">
         <input type="radio" name="optionMood" id="optionSad" value="Sad" ng-model="formData.mood">Sad
@@ -43,7 +43,7 @@
 
     <div class="textareaGroup">
         <label for="formMotivation">Why are you feeling that way?</label>
-        <textarea form="checkForm" rows="3" cols="30" class="formInput" id="formMotivation" placeholder="Why do I feel this way?" ng-model="formData.motivation">
+        <textarea form="checkForm" rows="3" cols="30" class="formInput" id="formMotivation" placeholder="Why do I feel this way?" ng-model="formData.motivation" required>
             </textarea>
     </div>
     <button type="submit" class="btnSubmit" ng-click="checkIn()" ng-disabled="checkForm.$invalid">Check in</button>
