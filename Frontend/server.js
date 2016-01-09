@@ -1,11 +1,18 @@
-var express         = require('express');
-var mongoose        = require('mongoose');
-var port            = process.env.PORT || 3000;
-var bodyParser      = require('body-parser');
-var methodOverride  = require('method-override');
-var app             = express();
+var express = require('express');
+var mongoose = require('mongoose');
+var port = process.env.PORT || 3000;
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var app = express();
 
-mongoose.connect("mongodb://localhost/GeoFeelings/");
+//mongoose.connect("mongodb://localhost/GeoFeelings/");
+var mongoURI = "mongodb://localhost/GeoFeelings/";
+var MongoDB = mongoose.connect(mongoURI).connection;
+MongoDB.on('error', function(err) { console.log(err.message); });
+MongoDB.once('open', function() {
+    console.log("mongodb connection open");
+});
 
 
 app.use(express.static(__dirname + '/Frontend'));
