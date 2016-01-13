@@ -39,6 +39,7 @@ main {
   margin: auto;
 }
 label {
+  display: block;
   font-weight: bold;
 }
 textarea {

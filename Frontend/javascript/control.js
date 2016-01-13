@@ -18,14 +18,21 @@ control.controller('control',function($scope,$http,$rootScope,geolocation,google
         googleservice.refresh($scope.formData.latitude, $scope.formData.longitude);
 
     });
+    $rootScope.$on("clicked", function(){
+
+        // Run the gservice functions associated with identifying coordinates
+        $scope.$apply(function(){
+            $scope.formData.latitude = parseFloat(googleservice.clickLat).toFixed(3);
+            $scope.formData.longitude = parseFloat(googleservice.clickLong).toFixed(3);
+        });
+    });
 
     $scope.checkIn = function(){
         var checkInData = {
             username: $scope.formData.username,
             mood: $scope.formData.mood,
             location:[$scope.formData.longitude,$scope.formData.latitude],
-            motivation: $scope.formData.motivation,
-            htmlverified: $scope.formData.htmlverified
+            motivation: $scope.formData.motivation
         };
         $http.post('/checkins',checkInData).success(function(data){
             $scope.formData.username="";
