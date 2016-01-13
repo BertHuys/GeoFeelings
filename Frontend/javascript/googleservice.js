@@ -1,16 +1,22 @@
 angular.module('googleservice', [])
-    .factory('googleservice', function($http){
+    .factory('googleservice', function($rootScope,$http){
 
         var googleMapService = {};
         var locations = [];
+        var lastMarker;
+        var currentSelectedMarker;
         var selectedLat = 3.250102;
         var selectedLong = 50.825078;
+        googleMapService.clickLat  = 0;
+        googleMapService.clickLong = 0;
 
         googleMapService.refresh = function(latitude, longitude){
             locations = [];
+
             selectedLat = latitude;
             selectedLong = longitude;
-            $http.get('/users').success(function(response){
+
+            $http.get('/checkins').success(function(response){
                 locations = convertToMapPoints(response);
                 initialize(latitude, longitude);
             }).error(function(){});
@@ -33,7 +39,7 @@ angular.module('googleservice', [])
                     }),
                     username: checkin.username,
                     mood: checkin.mood,
-                    motivation: user.motivation
+                    motivation: checkin.motivation
                 });
             }
             return locations;
@@ -66,9 +72,28 @@ angular.module('googleservice', [])
                 icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
             });
             lastMarker = marker;
+            map.panTo(new google.maps.LatLng(latitude, longitude));
+
         };
 
         google.maps.event.addDomListener(window, 'load',
             googleMapService.refresh(selectedLat, selectedLong));
         return googleMapService;
+        google.maps.event.addListener(map, 'click', function(e){
+            var marker = new google.maps.Marker({
+                position: e.latLng,
+                animation: google.maps.Animation.BOUNCE,
+                map: map,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+            });
+            if(lastMarker){
+                lastMarker.setMap(null);
+            }
+            lastMarker = marker;
+            map.panTo(marker.position);
+            googleMapService.clickLat = marker.getPosition().lat();
+            googleMapService.clickLong = marker.getPosition().lng();
+            $rootScope.$broadcast("clicked");
+        });
+
     });

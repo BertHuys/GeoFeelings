@@ -1,5 +1,6 @@
 var mongoose        = require('mongoose');
 var User            = require('./models/user.js');
+var Checkin         = require('./models/checkIn.js');
 
 /*module.exports = function(app) {
     app.get('/users', function(req, res){
@@ -38,6 +39,14 @@ module.exports = function(app) {
             res.json(users);
         });
     });
+    app.get('/checkins', function(req,res){
+        var query = Checkin.find({});
+        query.exec(function(err,checkins){
+            if(err)
+                res.send(err);
+            res.json(checkins);
+        });
+    });
 
     // POST Routes
     // --------------------------------------------------------
@@ -60,6 +69,22 @@ module.exports = function(app) {
         });
     });
 
+    app.post('/checkins', function(req,res){
+       var newcheckin = new Checkin(req.body);
+        console.log("we got here: " + newcheckin);
+
+        // New User is saved in the db.
+        newcheckin.save(function(err){
+            console.log("in save function");
+            if(err) res.send(err);
+
+            // If no errors are found, it responds with a JSON of the new user
+            console.log("we got even further");
+            res.json(req.body);
+
+    });
+
 
     // Save a checkin
-};
+});
+}

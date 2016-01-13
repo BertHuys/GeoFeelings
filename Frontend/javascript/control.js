@@ -1,11 +1,23 @@
 var control = angular.module('control',['geolocation','googleservice']);
-control.controller('control',function($scope,$http,geolocation,googleservice){
+control.controller('control',function($scope,$http,$rootScope,geolocation,googleservice){
     $scope.formData ={};
     var coords ={};
     var long = 0;
     var lat = 0;
     $scope.formData.latitude = 3.250102;
     $scope.formData.longitude = 50.825078;
+
+    geolocation.getLocation().then(function(data){
+
+        coords = {lat:data.coords.latitude, long:data.coords.longitude};
+
+        $scope.formData.longitude = parseFloat(coords.long).toFixed(3);
+        $scope.formData.latitude = parseFloat(coords.lat).toFixed(3);
+
+
+        googleservice.refresh($scope.formData.latitude, $scope.formData.longitude);
+
+    });
 
     $scope.checkIn = function(){
         var checkInData = {
