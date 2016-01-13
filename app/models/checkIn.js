@@ -9,7 +9,7 @@ var checkInSchema = new Schema({
     timestamp: {type:Date, default: Date.now},
     mood:{type:String,required:true},
     location: {type: [Number], required: true},
-    place: {type:String, required:true},
+    place: {type:String},
     motivation: String
 });
 
