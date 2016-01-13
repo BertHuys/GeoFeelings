@@ -4,8 +4,36 @@ var checkin         = require('./models/checkIn.js');
 var friend          = require('./models/Friends.js');
 var express         = require('express');
 var jwt             = require('jsonwebtoken');
+var bodyParser      = require('body-parser')
 
 module.exports = function(app) {
+
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended:true}));
+    // POST Routes
+    // --------------------------------------------------------
+    // Provides method for saving new users in the db
+    //This method must NOT be authenticated
+    app.post('/users', function(req, res){
+
+        // Creates a new User based on the Mongoose schema and the post bo.dy
+        var newuser = new User(JSON.parse(req.body));
+        //console.log("we got here: " + newuser);
+
+        // New User is saved in the db.
+        newuser.save(function(err){
+            //console.log("in save function");
+            if(err) {res.send(err);}
+
+            // If no errors are found, it responds with a JSON of the new user
+            //console.log("we got even further");
+            res.json(req.body);
+
+        });
+    });
+
+
+
     var apiRoutes = express.Router();
 
     //API routes
@@ -56,14 +84,12 @@ module.exports = function(app) {
 
         //decode token
         if(token){
-        console.log('past the if');
             //verify secret
             jwt.verify(token, 'secretKey', function(err,decoded){
                 if(err){
                     return res.json({succes:false, message: 'Failed to authenticate token.'});
                 } else{
                     req.decoded = decoded;
-                    console.log('decoded: ' + decoded);
                     next();
                 }
             });
@@ -81,11 +107,9 @@ module.exports = function(app) {
     // GET Routes
     // --------------------------------------------------------
     // Retrieve records for all users in the db
-    //use /api/users?token=.... with the token from header[x-acces-token]
     app.get('/api/users', function(req, res){
 
         // Uses Mongoose schema to run the search (empty conditions)
-        console.log('got into get');
         var query = User.find({});
         query.exec(function(err, users){
             if(err)
@@ -96,36 +120,18 @@ module.exports = function(app) {
         });
     });
 
-    // POST Routes
-    // --------------------------------------------------------
-    // Provides method for saving new users in the db
-    app.post('/users', function(req, res){
 
+
+
+    // Save a checkin according to app/models/checkIn
+    app.post('/api/checkin', function(req, res){
+        console.log("got here");
         // Creates a new User based on the Mongoose schema and the post bo.dy
-        var newuser = new User(req.body);
-        //console.log("we got here: " + newuser);
-
-        // New User is saved in the db.
-        newuser.save(function(err){
-            //console.log("in save function");
-            if(err) res.send(err);
-
-            // If no errors are found, it responds with a JSON of the new user
-            //console.log("we got even further");
-            res.json(req.body);
-
-        });
-    });
-
-
-    // Save a checkin
-    app.post('/checkin', function(req, res){
-
-        // Creates a new User based on the Mongoose schema and the post bo.dy
-        var checkIn = new checkin(req.body);
+        var checkIn = new checkin(JSON.parse(req.body));
 
         checkIn.save(function(err){
             //console.log("in save function");
+            console.log(err);
             if(err) res.send(err);
 
             // If no errors are found, it responds with a JSON of the new user
@@ -133,6 +139,80 @@ module.exports = function(app) {
 
         });
     });
+
+    //delete a check in as an admin (rolecheck later)
+    app.post('/api/checkout', function(req,res){
+        checkin.findOne({
+            username:req.body.username,
+            timestamp: req.body.timestamp
+        }, function(err, checkin){
+            if(err) res.send(err);
+            checkin.remove();
+            res.json({succes:true});
+        })
+
+
+    });
+
+    //Get checkins between two datetimes
+    //if i get to it, difficult to do
+
+
+    //get checkins from name
+    app.post('/api/checkinsbyname', function(req,res) {
+        checkin.find({
+            username: JSON.parse(req.body)['username']
+        }, function (err, checkin) {
+            if (err) res.send(err);
+            res.json(checkin);
+        });
+    });
+
+
+    //get checkins from location
+    app.post('/api/checkinsbylocation', function(req,res) {
+        checkin.find({
+            location: JSON.parse(req.body)['location']
+        }, function (err, checkin) {
+            if (err) res.send(err);
+            res.json(checkin);
+        });
+    });
+
+
+    //Add a friendship
+    app.post('/api/friends', function(req, res){
+        var newFriendship = new friend(JSON.parse(req.body));
+        newFriendship.save(function(err){
+            if(err) {res.send(err);}
+            // If no errors are found, it responds with a JSON of the new friendship
+            res.json(req.body);
+        });
+    });
+
+
+
+    //Get friends
+    app.post('/api/friends', function(req,res){
+        var query = friend.find({
+            _id : JSON.parse(req.body)['_id']
+        });
+        query.exec(function(err, friends){
+            if(err) res.send(err)
+            res.json(friends);
+        })
+    });
+
+    //get user by id
+    app.post('/api/userbyid', function(req,res) {
+        User.find({
+            _id: JSON.parse(req.body)['_id']
+        }, function (err, user) {
+            if (err) res.send(err);
+            res.json(user);
+        });
+    });
+
 
     app.use(apiRoutes);
 };

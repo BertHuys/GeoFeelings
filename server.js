@@ -7,7 +7,8 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var app = express();
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 // Express Configuration
 // -----------------------------------------------------

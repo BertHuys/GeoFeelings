@@ -9,7 +9,8 @@ var checkInSchema = new Schema({
     timestamp: {type:Date, default: Date.now},
     coordinates: {type: [Number], required: true},
     location: {type:String, required:true},
-    reason: String
+    isHappy: {type:Boolean, required:true},
+    motivation: String
 });
 
 module.exports = mongoose.model('Geo-checkIn', checkInSchema);

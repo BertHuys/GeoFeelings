@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 var FriendSchema = new Schema({
     _id:String,
-    friendId:String
+    friendID:String
 });
 
 module.exports = mongoose.model('Geo-friends', FriendSchema);
