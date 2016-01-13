@@ -7,9 +7,10 @@ var Schema = mongoose.Schema;
 var checkInSchema = new Schema({
     username: {type: String, required: true},
     timestamp: {type:Date, default: Date.now},
-    coordinates: {type: [Number], required: true},
-    location: {type:String, required:true},
-    reason: String
+    mood:{type:String,required:true},
+    location: {type: [Number], required: true},
+    place: {type:String, required:true},
+    motivation: String
 });
 
 module.exports = mongoose.model('Geo-checkIn', checkInSchema);

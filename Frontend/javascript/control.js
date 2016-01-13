@@ -4,12 +4,16 @@ control.controller('control',function($scope,$http,geolocation,googleservice){
     var coords ={};
     var long = 0;
     var lat = 0;
+    $scope.formData.latitude = 3.250102;
+    $scope.formData.longitude = 50.825078;
 
     $scope.checkIn = function(){
         var checkInData = {
             username: $scope.formData.username,
             mood: $scope.formData.mood,
-            motivation: $scope.formData.motivation
+            location:[$scope.formData.longitude,$scope.formData.latitude],
+            motivation: $scope.formData.motivation,
+            htmlverified: $scope.formData.htmlverified
         };
         $http.post('/checkins',checkInData).success(function(data){
             $scope.formData.username="";

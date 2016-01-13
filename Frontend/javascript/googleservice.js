@@ -3,8 +3,8 @@ angular.module('googleservice', [])
 
         var googleMapService = {};
         var locations = [];
-        var selectedLat = 0;
-        var selectedLong = 0;
+        var selectedLat = 3.250102;
+        var selectedLong = 50.825078;
 
         googleMapService.refresh = function(latitude, longitude){
             locations = [];
@@ -23,6 +23,7 @@ angular.module('googleservice', [])
                     '<p><b>Username</b>: ' + checkin.username +
                         '<br><b>Mood</b>: ' + checkin.mood +
                         '<br><b>Motivation</b>: ' + checkin.motivation +
+                        '<br><b>Place:</b>: '+checkin.place +
                         '</p>';
                 locations.push({
                     latlon: new google.maps.LatLng(checkin.location[1], checkin.location[0]),
