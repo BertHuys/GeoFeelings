@@ -46,6 +46,17 @@
         <textarea form="checkForm" rows="3" cols="30" class="formInput" id="formMotivation" placeholder="Why do I feel this way?" ng-model="formData.motivation" required>
             </textarea>
     </div>
+    <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input type="text" id="latitude" value="3.250102" ng-model="formData.latitude" readonly>
+    </div>
+    <div class="form-group">
+        <label for="longitude">Longitude</label>
+        <input type="text"  id="longitude" value="50.825078" ng-model="formData.longitude" readonly>
+    </div>
+    <div class="form-group">
+        <label>Allow us to use your location?</label><button></button>
+    </div>
     <button type="submit" class="btnSubmit" ng-click="checkIn()" ng-disabled="checkForm.$invalid">Check in</button>
 </form>
     </fieldset>

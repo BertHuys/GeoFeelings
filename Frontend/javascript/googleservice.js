@@ -3,8 +3,8 @@ angular.module('googleservice', [])
 
         var googleMapService = {};
         var locations = [];
-        var selectedLat = 5;
-        var selectedLong = -39;
+        var selectedLat = 0;
+        var selectedLong = 0;
 
         googleMapService.refresh = function(latitude, longitude){
             locations = [];
@@ -66,6 +66,7 @@ angular.module('googleservice', [])
             });
             lastMarker = marker;
         };
+
         google.maps.event.addDomListener(window, 'load',
             googleMapService.refresh(selectedLat, selectedLong));
         return googleMapService;
