@@ -1,7 +1,7 @@
 var mongoose        = require('mongoose');
-var User            = require('./model.js');
+var User            = require('./models/user.js');
 
-module.exports = function(app) {
+/*module.exports = function(app) {
     app.get('/users', function(req, res){
         var query = User.find({});
         query.exec(function(err, users){
@@ -20,8 +20,8 @@ module.exports = function(app) {
         });
     });
 };
-
-/*module.exports = function(app) {
+ */
+module.exports = function(app) {
 
     // GET Routes
     // --------------------------------------------------------
@@ -46,14 +46,20 @@ module.exports = function(app) {
 
         // Creates a new User based on the Mongoose schema and the post bo.dy
         var newuser = new User(req.body);
+        console.log("we got here: " + newuser);
 
         // New User is saved in the db.
         newuser.save(function(err){
-            if(err)
-                res.send(err);
+            console.log("in save function");
+            if(err) res.send(err);
 
             // If no errors are found, it responds with a JSON of the new user
+            console.log("we got even further");
             res.json(req.body);
+
         });
     });
-};*/
+
+
+    // Save a checkin
+};

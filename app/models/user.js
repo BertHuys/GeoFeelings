@@ -6,18 +6,18 @@ var guid = require('node-uuid');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    _id: {type: String, required: true},
+    _id: String,
     username: {type: String, required: true},
     password:{type: String, required: true},
+    admin: Boolean,
+    timestamp: {type:Date, default: Date.now},
+    isChatty: Boolean
 });
 
 UserSchema.pre('save', function(next){
     uid= guid.v1();
     this._id = uid;
-    if(!this._id){
-        this._id = uid
-    }
+    next();
 })
-//uuid.v1();
 
 module.exports = mongoose.model('Geo-user', UserSchema);
