@@ -10,32 +10,32 @@ var gulp = require("gulp"),
 
 
 gulp.task("default", function(){
-    var cssWatcher = gulp.watch('./app/styles/**/*.css', ['css-build']);
+    var cssWatcher = gulp.watch('./Frontend/less/**/*.css', ['css-build']);
     cssWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.typed);
     });
 
-    var jsWatcher = gulp.watch('./app/scripts/**/*.js', ['js-build']);
+    var jsWatcher = gulp.watch('./Frontend/javascript/**/*.js', ['js-build']);
     jsWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.typed);
     });
 });
 
 gulp.task("js-build", function(){
-    gulp.src("./app/scripts/**/*.js")
+    gulp.src("./Frontend/javascript/**/*.js")
         .pipe(jshint())
         .pipe(jshint.reporter(jsStylish))
         .pipe(sourcemaps.init())
         .pipe(concat("app.min.js"))
         .pipe(uglify())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./app/dist/js'))
+        .pipe(gulp.dest('./Frontend/dist/js'))
         .pipe(notify({message: 'js built'}));
 });
 
 
 gulp.task("css-build", function(){
-    gulp.src("./app/styles/*.css")
+    gulp.src("./Frontend/less/**/*.css")
         .pipe(csslint({
             'ids': false
         }))
@@ -44,15 +44,12 @@ gulp.task("css-build", function(){
         .pipe(sourcemaps.init())
         .pipe(cssMinifier())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest("./app/dist/css"));
+        .pipe(gulp.dest("./Frontend/dist/css"));
 });
 
 gulp.task("copy-externals", function(){
 
-    gulp.src("./bower_components/modernizr.js/modernizr.js.js")
-        .pipe(gulp.dest("./app/dist/js"));
-
-    gulp.src("./bower_components/bootstrap/dist/**")
-        .pipe(gulp.dest("./app/dist/bootstrap"));
+    gulp.src("../bower_components/modernizr.js/modernizr.js.js")
+        .pipe(gulp.dest("./Frontend/dist/js"));
 
 });
