@@ -7,8 +7,10 @@ angular.module('googleservice', [])
         var currentSelectedMarker;
         var selectedLat = 3.250102;
         var selectedLong = 50.825078;
+        var selectedPlace = "test";
         googleMapService.clickLat  = 0;
         googleMapService.clickLong = 0;
+
 
         googleMapService.refresh = function(latitude, longitude){
             locations = [];
@@ -23,7 +25,6 @@ angular.module('googleservice', [])
         };
 
 
-        
 
         var convertToMapPoints = function(response){
             var locations = [];
@@ -43,7 +44,8 @@ angular.module('googleservice', [])
                     }),
                     username: checkin.username,
                     mood: checkin.mood,
-                    motivation: checkin.motivation
+                    motivation: checkin.motivation,
+                    place: checkin.place
                 });
             }
             return locations;
@@ -77,10 +79,9 @@ angular.module('googleservice', [])
             });
             lastMarker = marker;
 
-            // Function for moving to a selected location
             map.panTo(new google.maps.LatLng(latitude, longitude));
 
-            // Clicking on the Map moves the bouncing red marker
+
             google.maps.event.addListener(map, 'click', function(e){
                 var marker = new google.maps.Marker({
                     position: e.latLng,
@@ -89,25 +90,23 @@ angular.module('googleservice', [])
                     icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
                 });
 
-                // When a new spot is selected, delete the old red bouncing marker
+
                 if(lastMarker){
                     lastMarker.setMap(null);
                 }
 
-                // Create a new red bouncing marker and move to it
+
                 lastMarker = marker;
                 map.panTo(marker.position);
 
-                // Update Broadcasted Variable (lets the panels know to change their lat, long values)
                 googleMapService.clickLat = marker.getPosition().lat();
                 googleMapService.clickLong = marker.getPosition().lng();
                 $rootScope.$broadcast("clicked");
             });
         };
 
-// Refresh the page upon window load. Use the initial latitude and longitude
         google.maps.event.addDomListener(window, 'load',
-            googleMapService.refresh(selectedLat, selectedLong));
+            googleMapService.refresh(selectedLat, selectedLong, selectedPlace));
 
         return googleMapService;
     });
